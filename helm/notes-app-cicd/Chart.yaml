@@ -1,0 +1,4 @@
+apiVersion: v2
+name: notes-app-cicd
+description: A Helm chart for deploying my microservice
+version: 0.1.0

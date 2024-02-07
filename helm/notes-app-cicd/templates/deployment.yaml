@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "notes-app-cicd.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "notes-app-cicd.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "notes-app-cicd.name" . }}
+    spec:
+      containers:
+        - name: notes-app-cicd
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
